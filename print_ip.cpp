@@ -5,6 +5,7 @@
 #include <cstdlib>
 #include <tuple>
 
+// doxygen test
 template<typename T, std::enable_if_t<std::is_integral<T>::value, bool> = true>
 void print_ip(T x) {
     uint8_t* tmp = reinterpret_cast<uint8_t*>(&x);
@@ -26,6 +27,9 @@ struct is_container<std::vector<T,A>> : std::true_type {};
 template<typename T, typename A>
 struct is_container<std::list<T,A>> : std::true_type {};
 
+/**
+ * This function works with std container representation of ip addresses
+ */
 template<typename T, std::enable_if_t<is_container<T>::value, bool> = true>
 void print_ip(T x) {
     for (auto iter = x.begin(); iter != x.end(); iter++) {
